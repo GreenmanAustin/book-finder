@@ -18,7 +18,7 @@
 
   ## Usage
 
-  The deployed app is available using the following link:  <a href="https://drive.google.com/file/d/11jvaywn2QrhxRcrQhNyD7Vndve7rKPu3/view?usp=sharing">Deployed App</a>
+  The deployed app is available using the following link:  <a href="https://desolate-taiga-62581.herokuapp.com/">Deployed App</a>
 
   ## Contributing
 
