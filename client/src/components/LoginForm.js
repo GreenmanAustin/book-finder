@@ -30,12 +30,12 @@ const LoginForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    console.log(userFormData);
     try {
       const { data } = await loginUser({
         variables: { ...userFormData }
       });
-
+      console.log(data);
       Auth.login(data.loginUser.token);
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
@@ -50,7 +50,6 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });

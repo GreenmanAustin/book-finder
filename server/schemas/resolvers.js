@@ -14,6 +14,11 @@ const resolvers = {
             }
 
             throw new AuthenticationError('Not logged in');
+        },
+        users: async () => {
+            return User.find()
+                .select('-__v -password')
+                .populate('savedBooks');
         }
     },
 
@@ -40,11 +45,12 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveBook: async (parent, bookData, context) => {
+        saveBook: async (parent, { content }, context) => {
             if (context.user) {
+
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: bookData } },
+                    { $addToSet: { savedBooks: content } },
                     { new: true }
                 );
 
@@ -55,6 +61,7 @@ const resolvers = {
         },
         removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
+                console.log(bookId);
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedBooks: { bookId: bookId } } },
